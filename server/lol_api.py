@@ -13,7 +13,7 @@ HEADERS = {
 
 
 class Summoner:
-    def __init__(self, api_key, username=None):
+    def __init__(self, username=None, api_key=API_KEY):
         self.root_link = 'https://euw1.api.riotgames.com'
         self.key = api_key
         self.username = username
@@ -30,12 +30,12 @@ class Summoner:
     def current_game(self):
         current_game_url = '/lol/spectator/v3/active-games/by-summoner/'
         response = requests.get(f'{self.root_link}{current_game_url}{self.summoner_id}', headers=HEADERS).json()
-        if 'status' in response and int(response["status"]["status_code"]) == 404:
+        if 'status' in response and int(response["status"]["status_code"]) != 200:
             return False, None
         else:
             return True, response
 
 if __name__ == '__main__':
-    jingjie = Summoner(API_KEY, 'MrJingjie')
+    jingjie = Summoner('MrJingjie')
     print(jingjie.summoner_id)
     print(jingjie.current_game())
