@@ -97,3 +97,6 @@ ENV/
 
 # pycharm
 .idea/
+
+# the key
+lol_api_key
