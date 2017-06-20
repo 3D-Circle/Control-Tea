@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+
+  "name": "Control-Tea",
+  "description": "This extension offers a virtual sip of tea with Ctrl-T",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "home.html",
+    "default_title": "Control-Tea"
+  },
+  "chrome_url_overrides" : {
+    "newtab": "home.html"
+  },
+  "permissions": [
+    "activeTab",
+    "https://ajax.googleapis.com/"
+  ]
+}
