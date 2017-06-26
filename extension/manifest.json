@@ -7,11 +7,10 @@
 
   "browser_action": {
     "default_icon": "icon.png",
-    "default_popup": "home.html",
     "default_title": "Control-Tea"
   },
   "chrome_url_overrides" : {
-    "newtab": "home.html"
+    "newtab": "new_tab.html"
   },
   "permissions": [
     "activeTab",

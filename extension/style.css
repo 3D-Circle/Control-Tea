@@ -1,0 +1,11 @@
+body {
+    background: url('http://www.nationalgeographic.com/content/dam/photography/PROOF/2017/june/travel-photo-contest-gallery-june/029_best_travel_contest_june.jpg') no-repeat center center fixed;
+}
+
+#title {
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    text-align: center;
+    font-size: 22px;
+}

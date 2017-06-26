@@ -38,4 +38,4 @@ class Summoner:
 if __name__ == '__main__':
     jingjie = Summoner('MrJingjie')
     print(jingjie.summoner_id)
-    print(jingjie.current_game())
+    print([i['summonerName'] for i in jingjie.current_game()[1]['participants']])

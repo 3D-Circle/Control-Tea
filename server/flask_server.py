@@ -15,5 +15,6 @@ def get_player_game():
     else:
         return jsonify({'status': 'offline'})
 
+
 if __name__ == '__main__':
     app.run()
