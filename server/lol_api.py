@@ -17,6 +17,7 @@ class Champion:
     def __init__(self, _id):
         self.id = _id
         self.name = self.get_name()
+        self.icon = self.get_profile_icon()
 
     def get_name(self):
         query_url = f'/lol/static-data/v3/champions/{self.id}'
@@ -54,7 +55,14 @@ class Match:
         self.game_time = response_json['gameLength']
         self.participants = [summoner['summonerName'] for summoner in response_json['participants']]
 
+        # Information to display:
+        # TODO champions
+        # TODO mastery (keystone)
+        # TODO summoner spells
+        # TODO team composition
+        # TODO game mmr (elo)
         # TODO time played today
+        # TODO url to op.gg
 
 
 if __name__ == '__main__':
