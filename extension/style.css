@@ -9,3 +9,10 @@ body {
     text-align: center;
     font-size: 22px;
 }
+
+iframe {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
