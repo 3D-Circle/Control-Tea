@@ -1,5 +1,12 @@
 body {
-    background: url('http://www.nationalgeographic.com/content/dam/photography/PROOF/2017/june/travel-photo-contest-gallery-june/029_best_travel_contest_june.jpg') no-repeat center center fixed;
+    background: url('http://www.nationalgeographic.com/content/dam/photography/PROOF/2017/April/epic-landscapes/16-9154838_uploadsmember516662yourshot-516662-9154838jpg_ekc3qcvrtc4diwvyxwqwxf74bezxs2udwatjavjxeftgooyp4jfa_5760x3840.ngsversion.1492194605387.adapt.1190.1.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: "Roboto" !important;
+}
+
+div.tile {
+    padding: 10px;
+    background: rgba(0, 0, 0, .2);
 }
 
 #title {
@@ -16,3 +23,15 @@ iframe {
     top: 10px;
     right: 10px;
 }
+
+div#date_time {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 30px;
+}
+
+#date {
+    font-size: 16px;
+}
+
