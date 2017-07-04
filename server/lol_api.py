@@ -1,4 +1,4 @@
-from pprint import pprint
+import json
 import requests
 
 
@@ -22,8 +22,8 @@ class Champion:
 
     def get_name(self):
         query_url = f'/lol/static-data/v3/champions/{self.id}'
-        r = requests.get(f'{ROOT_LINK}{query_url}')
-        return r.json()['name'] if 'status' not in r.json() else 'Teemo'  # the default champion == troll
+        r = requests.get(f'{ROOT_LINK}{query_url}', headers=HEADERS)
+        return r.json()['name']
 
     def get_profile_icon(self):
         """Return the url to the profile icon of the champion
@@ -34,24 +34,23 @@ class Champion:
 class Spell:
     def __init__(self, _id):
         self.id = _id
+        self.icon = self.get_icon()
 
-    def get_profile_icon(self):
-        spell_ref = {
-            0: 'Haste',  # Ghost
-            0.1: 'Snowball',  # Mark
-            0.2: 'Mana',  # Clarity,
-            0.3: 'PoroThrow',  # Poro Toss
-            0.4: 'PoroRecall',  # To the King!
-            0.5: 'Barrier',
-            1: 'Boost',
-            2: 'Exhaust',
-            4: 'Flash',
-            7: 'Heal',
-            11: 'Smite',
-            12: 'Teleport',
-            14: 'Dot'  # Ignite
-        }[self.id]
-        return f'http://ddragon.leagueoflegends.com/cdn/7.13.1/img/spell/Summoner{spell_ref}.png'
+    def get_icon(self):
+        query_url = f'/lol/static-data/v3/summoner-spells/{self.id}'
+        r = requests.get(f'{ROOT_LINK}{query_url}', headers=HEADERS)
+        return f'http://ddragon.leagueoflegends.com/cdn/7.13.1/img/spell/{r.json()["key"]}.png'
+
+
+def find_keystone(masteries):
+    """Processes a list of masteries and return the url to the keystone if there is any"""
+    KEYSTONE_IDS = [6161, 6162, 6164, 6361, 6362, 6363, 6261, 6262, 6263]
+    keystone = 'https://opgg-static.akamaized.net/images/site/placeholder_keystonemastery.png'
+    for mastery in masteries:
+        if mastery['masteryId'] in KEYSTONE_IDS:
+            keystone = f'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/mastery/{mastery["masteryId"]}.png'
+            break
+    return keystone
 
 
 class Summoner:
@@ -82,27 +81,23 @@ class Match:
 
     def get_team_info(self):
         """Return a list of players including their champions, keystones and summoner spells (via urls to the icons)"""
-        KEYSTONE_IDS = [6161, 6162, 6164, 6361, 6362, 6363, 6261, 6262, 6263]
+        team_blue, team_red = [], []
         # Information to display:
-        # TODO mastery (keystone)
-        # TODO summoner spells
         # TODO game mmr (elo)
         # TODO time played today
-        return [
-            {
-                'team': 'blue' if summoner['teamId'] == 100 else 'red',
+        for summoner in self.json['participants']:
+            if summoner['teamId'] == 100:
+                team_to_append = team_blue
+            else:
+                team_to_append = team_red
+            team_to_append.append({
+                'champion': Champion(summoner['championId']).icon,
+                'spells': [Spell(summoner['spell1Id']).icon, Spell(summoner['spell2Id']).icon],
+                'keystone': find_keystone(summoner['masteries']),
                 'name': summoner['summonerName'],
-                'url': f'https://euw.op.gg/summoner/userName={summoner["summonerName"]}',
-                'champion': Champion(summoner['championId']).get_profile_icon(),
-                'keystone': 1,
-                'spells': [],
-            }
-            for summoner in self.json['participants']
-        ]
+                'url': f'https://euw.op.gg/summoner/userName={summoner["summonerName"]}'
+            })
 
+    def process_info(self):
+        pass
 
-
-
-if __name__ == '__main__':
-    jingjie = Summoner('OG Darkside')
-    pprint(jingjie.current_game().json)
