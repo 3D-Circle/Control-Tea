@@ -1,4 +1,3 @@
-import json
 import requests
 import os
 
@@ -60,6 +59,7 @@ def find_keystone(masteries):
 
 class Summoner:
     def __init__(self, username=None):
+        # TODO time played today
         self.username = username
         self.summoner_id = self.get_summoner_id()
 
@@ -81,15 +81,11 @@ class Match:
     def __init__(self, response_json):
         self.json = response_json
 
-        self.game_mode = response_json['gameMode']
-        self.start_time = response_json['gameStartTime']
-
     def get_team_info(self):
         """Return a list of players including their champions, keystones and summoner spells (via urls to the icons)"""
         team_blue, team_red = [], []
         # Information to display:
         # TODO game mmr (elo)
-        # TODO time played today
         for summoner in self.json['participants']:
             if summoner['teamId'] == 100:
                 team_to_append = team_blue
@@ -102,7 +98,12 @@ class Match:
                 'name': summoner['summonerName'],
                 'url': f'https://euw.op.gg/summoner/userName={summoner["summonerName"]}'
             })
+        return team_blue, team_red
 
     def process_info(self):
-        pass
+        return {
+            'game_mode': self.json['gameMode'],
+            'start_time': self.json['gameStartTime'],
+            'teams': self.get_team_info()
+        }
 
