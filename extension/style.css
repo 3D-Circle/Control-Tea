@@ -6,7 +6,7 @@ body {
 
 div.tile {
     padding: 10px;
-    background: rgba(0, 0, 0, .2);
+    background: rgba(0, 0, 0, .25);
 }
 
 #title {
@@ -29,6 +29,7 @@ div#date_time {
     top: 10px;
     left: 10px;
     font-size: 30px;
+    color: white;
 }
 
 #date {

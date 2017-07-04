@@ -1,0 +1,1 @@
+web: gunicorn server/flask_server:app --log-file=-
