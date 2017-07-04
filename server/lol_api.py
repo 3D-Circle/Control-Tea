@@ -1,7 +1,7 @@
 import requests
 
 
-with open('lol_api_key') as f:
+with open('lol_api_key.txt') as f:
     API_KEY = f.read()
 
 HEADERS = {

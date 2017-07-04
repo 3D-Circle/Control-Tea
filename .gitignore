@@ -99,4 +99,4 @@ ENV/
 .idea/
 
 # the key
-lol_api_key
+server/lol_api_key.txt
