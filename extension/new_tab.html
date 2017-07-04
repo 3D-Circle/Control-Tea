@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <script src="libs/moment.js"></script>
     <script src="libs/jquery-3.2.1.min.js"></script>
+    <script src="libs/skycons.js"></script>
     <script src='script.js'></script>
 </head>
 <body>
@@ -16,12 +17,18 @@
     <iframe src='https://lichess.org/training/frame?bg=dark&theme=brown' class='lichess-training-iframe'
             allowtransparency='true' frameBorder='0' style='width: 224px; height: 264px;'
             title='Lichess free online chess'></iframe>
-    <div id="date_time" class="tile">
-        <div id="time"></div>
-        <div id="date"></div>
+    <div id="top_left" class="tile">
+        <div id="date_time_wrapper">
+            <div id="time"></div>
+            <div id="date"></div>
+        </div>
+        <div id="weather_icon_wrapper">
+            <canvas id="weather_icon" height="40px" width="40px"></canvas>
+        </div>
     </div>
     <div id="footer">
         <div id="lol_status"></div>
+        <div id="detail_weather"></div>
     </div>
 </body>
 </html>

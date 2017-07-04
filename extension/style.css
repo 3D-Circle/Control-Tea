@@ -24,15 +24,31 @@ iframe {
     right: 10px;
 }
 
-div#date_time {
+#top_left {
     position: absolute;
     top: 10px;
     left: 10px;
     font-size: 30px;
     color: white;
+    display: flex;
+}
+
+#date_time_wrapper {
+    display: flex;
+    flex-direction:column;
 }
 
 #date {
     font-size: 16px;
 }
+
+#weather_icon_wrapper {
+    display:flex;
+    flex-direction:column;
+    margin-left: 10px;
+}
+
+
+
+
 

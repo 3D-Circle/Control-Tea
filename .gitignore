@@ -98,7 +98,7 @@ ENV/
 # pycharm
 .idea/
 
-# the key
-lol_api_key.txt
+# keys
+api_keys.json
 
 Procfile.windows
