@@ -1,3 +1,4 @@
+from pprint import pprint
 import requests
 
 
@@ -30,6 +31,29 @@ class Champion:
         return f"http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/{self.name}.png"
 
 
+class Spell:
+    def __init__(self, _id):
+        self.id = _id
+
+    def get_profile_icon(self):
+        spell_ref = {
+            0: 'Haste',  # Ghost
+            0.1: 'Snowball',  # Mark
+            0.2: 'Mana',  # Clarity,
+            0.3: 'PoroThrow',  # Poro Toss
+            0.4: 'PoroRecall',  # To the King!
+            0.5: 'Barrier',
+            1: 'Boost',
+            2: 'Exhaust',
+            4: 'Flash',
+            7: 'Heal',
+            11: 'Smite',
+            12: 'Teleport',
+            14: 'Dot'  # Ignite
+        }[self.id]
+        return f'http://ddragon.leagueoflegends.com/cdn/7.13.1/img/spell/Summoner{spell_ref}.png'
+
+
 class Summoner:
     def __init__(self, username=None):
         self.username = username
@@ -44,28 +68,41 @@ class Summoner:
         current_game_url = '/lol/spectator/v3/active-games/by-summoner/'
         response = requests.get(f'{ROOT_LINK}{current_game_url}{self.summoner_id}', headers=HEADERS).json()
         if 'status' in response and int(response["status"]["status_code"]) != 200:
-            return False, None
+            return False
         else:
-            return True, Match(response)
+            return Match(response)
 
 
 class Match:
     def __init__(self, response_json):
-        self.game_mode = response_json['gameMode']
-        self.game_time = response_json['gameLength']
-        self.participants = [summoner['summonerName'] for summoner in response_json['participants']]
+        self.json = response_json
 
+        self.game_mode = response_json['gameMode']
+        self.start_time = response_json['gameStartTime']
+
+    def get_team_info(self):
+        """Return a list of players including their champions, keystones and summoner spells (via urls to the icons)"""
+        KEYSTONE_IDS = [6161, 6162, 6164, 6361, 6362, 6363, 6261, 6262, 6263]
         # Information to display:
-        # TODO champions
         # TODO mastery (keystone)
         # TODO summoner spells
-        # TODO team composition
         # TODO game mmr (elo)
         # TODO time played today
-        # TODO url to op.gg
+        return [
+            {
+                'team': 'blue' if summoner['teamId'] == 100 else 'red',
+                'name': summoner['summonerName'],
+                'url': f'https://euw.op.gg/summoner/userName={summoner["summonerName"]}',
+                'champion': Champion(summoner['championId']).get_profile_icon(),
+                'keystone': 1,
+                'spells': [],
+            }
+            for summoner in self.json['participants']
+        ]
+
+
 
 
 if __name__ == '__main__':
-    jingjie = Summoner('Kikis')
-    print(jingjie.summoner_id)
-    print([i['summonerName'] for i in jingjie.current_game()[1]['participants']])
+    jingjie = Summoner('OG Darkside')
+    pprint(jingjie.current_game().json)
