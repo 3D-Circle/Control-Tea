@@ -1,9 +1,14 @@
 import json
 import requests
+import os
 
 
-with open('lol_api_key') as f:
-    API_KEY = f.read()
+is_prod = os.environ.get('IS_HEROKU', None)
+if is_prod:
+    API_KEY = os.environ.get('LOL_API_KEY')
+else:
+    with open('lol_api_key.txt') as f:
+        API_KEY = f.read()
 
 ROOT_LINK = 'https://euw1.api.riotgames.com'
 HEADERS = {

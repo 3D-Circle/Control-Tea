@@ -99,4 +99,6 @@ ENV/
 .idea/
 
 # the key
-lol_api_key
+lol_api_key.txt
+
+Procfile.windows
