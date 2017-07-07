@@ -28,7 +28,7 @@ iframe {
     position: absolute;
     top: 10px;
     left: 10px;
-    font-size: 30px;
+    font-size: 34px;
     color: white;
     display: flex;
 }
@@ -42,12 +42,17 @@ iframe {
     font-size: 16px;
 }
 
-#weather_icon_wrapper {
+#weather_wrapper {
     display:flex;
     flex-direction:column;
-    margin-left: 10px;
+    margin-left: 15px;
 }
 
+#current_temp {
+    font-size: 15px;
+    text-align: center;
+    padding-top: 4px;
+}
 
 
 

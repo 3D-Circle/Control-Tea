@@ -22,7 +22,7 @@ function set_current_icon() {
                     console.log(data);
                     var icon_name = data['icon'].toUpperCase().replace(/-/g, '_');
                     var current_temp = data['current_temp']
-
+                    $('#current_temp').html(current_temp + '°');
                     if (icon_name != cached_icon) {
                         console.log('new icon');
                         skycons.remove("weather_icon");
