@@ -1,4 +1,5 @@
 var root = 'http://control-tea.herokuapp.com';
+// var root = 'http://127.0.0.1:5000';
 
 function set_date_time() {
     $('div#time').html(moment().format('LTS'));
@@ -18,8 +19,10 @@ function set_current_icon() {
             $.get(root + '/weather?lat=' + position.coords.latitude + '&lon=' + position.coords.longitude).done(
                 // TODO: handle cases when position is unavailable
                 function(data) {
+                    console.log(data);
                     var icon_name = data['icon'].toUpperCase().replace(/-/g, '_');
-                    console.log(icon_name);
+                    var current_temp = data['current_temp']
+
                     if (icon_name != cached_icon) {
                         console.log('new icon');
                         skycons.remove("weather_icon");

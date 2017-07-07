@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
-import lol_api
 from weather_api import DarkSky
+import lol_api
 
 
 app = Flask(__name__)
