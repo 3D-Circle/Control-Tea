@@ -13,28 +13,27 @@ function set_current_icon() {
         if (cached_icon) {
             skycons.add("weather_icon", cached_icon['latest_weather_icon']);
         }
+
+        navigator.geolocation.getCurrentPosition(function(position) {
+            $.get(root + '/weather?lat=' + position.coords.latitude + '&lon=' + position.coords.longitude).done(
+                // TODO: handle cases when position is unavailable
+                function(data) {
+                    var icon_name = data['icon'].toUpperCase().replace(/-/g, '_');
+                    console.log(icon_name);
+                    if (icon_name != cached_icon) {
+                        console.log('new icon');
+                        skycons.remove("weather_icon");
+                        skycons.add("weather_icon", Skycons[icon_name]);
+                        chrome.storage.local.set({'latest_weather_icon': icon_name});
+                    }
+                    skycons.play();
+                }
+            )
+        })
     })
-
-    navigator.geolocation.getCurrentPosition(function(position) {
-        $.get(root + '/weather?lat=' + position.coords.latitude + '&lon=' + position.coords.longitude).done(
-            function(data) {
-                var icon_name = data['icon'];
-                console.log(icon_name.toUpperCase())
-                skycons.remove("weather_icon");
-                skycons.add("weather_icon", Skycons[icon_name.toUpperCase().replace('-', '_')]);
-                chrome.storage.local.set({'latest_weather_icon': icon_name});
-                skycons.play();
-            }
-        )
-    })
-}
-
-function get_user_location() {
-
 }
 
 $(document).ready(function() {
     set_date_time();
     set_current_icon();
-    get_user_location();
 });
