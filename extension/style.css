@@ -1,6 +1,5 @@
-body {
-    background: url('http://www.nationalgeographic.com/content/dam/photography/PROOF/2017/April/epic-landscapes/16-9154838_uploadsmember516662yourshot-516662-9154838jpg_ekc3qcvrtc4diwvyxwqwxf74bezxs2udwatjavjxeftgooyp4jfa_5760x3840.ngsversion.1492194605387.adapt.1190.1.jpg') no-repeat center center fixed;
-    background-size: cover;
+body, button {
+/*    background: url('http://www.nationalgeographic.com/content/dam/photography/PROOF/2017/April/epic-landscapes/16-9154838_uploadsmember516662yourshot-516662-9154838jpg_ekc3qcvrtc4diwvyxwqwxf74bezxs2udwatjavjxeftgooyp4jfa_5760x3840.ngsversion.1492194605387.adapt.1190.1.jpg') no-repeat center center fixed;*/
     font-family: "Roboto" !important;
 }
 
@@ -18,10 +17,8 @@ div.tile {
 }
 
 iframe {
-    display: inline-block;
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #top_left {
@@ -33,18 +30,20 @@ iframe {
     display: flex;
 }
 
+/* date & time */
 #date_time_wrapper {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
 }
 
 #date {
     font-size: 16px;
 }
 
+/* weather */
 #weather_wrapper {
     display:flex;
-    flex-direction:column;
+    flex-direction: column;
     margin-left: 15px;
 }
 
@@ -54,6 +53,159 @@ iframe {
     padding-top: 4px;
 }
 
+/* sidebar */
+#sidebar, #sidebar button {
+    color: white;
+    font-size: 14px;
+}
+
+#sidebar {
+    width: 0;
+    position: fixed; 
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .25);
+    overflow-x: hidden;
+    transition: 0.4s;
+    z-index: 2;
+/*    filter: blur(3px);*/
+}
+
+#sidebar::-webkit-scrollbar {
+    width: 4px;
+    background-color: dimgrey;
+} 
+
+#sidebar::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .3);
+}
 
 
+/*
+#sidebar_blur {
+    filter: blur(2px);
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    transition: 0.4;
+    background-color: rgba(0, 0, 0, 0);
+}
+*/
+
+#sidebar_toggle {
+    border: none;
+    background: rgba(0, 0, 0, .2);
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: 0.4s;
+    color: white;
+    font-size: 18px;
+}
+
+.widget_title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+    font-weight: 100;
+    color: ivory;
+    font-size: 24px;
+    margin: 5px 0 5px 0;
+}
+
+#widgets > hr {
+    border: 1px solid darkgrey;
+    width: 75%;
+}
+
+
+/* settings */
+#settings {
+    padding: 0 20px 0 20px;
+}
+
+.settings_title {
+/*    font-weight: bold;*/
+    font-size: 16px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.settings_row {
+    background-color: rgba(0, 0, 0, .4);
+    padding: 15px;
+}
+
+#apply_settings {
+    background-color: rgba(0, 0, 0, .4);
+    padding: 15px;
+    width: 100%;
+    border: none;
+    text-align: center;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+#apply_settings:active {
+    background-color: rgba(255, 255, 255, .2);
+}
+
+.spacer {
+    width: 100%;
+    height: 100px;
+}
+
+/* toggle switch */
+.toggle_switch_wrapper {
+    display: inline-block;
+    float: right;
+}
+
+.switch input {
+    position: absolute;
+    opacity: 0;
+}
+
+.switch {
+    display: inline-block;
+    font-size: 20px;
+    height: 1em;
+    width: 2em;
+    background: #BDB9A6;
+    border-radius: 1em;
+}
+
+.switch div {
+    height: 1.1em;
+    width: 1.1em;
+    border-radius: 1.1em;
+    background: #FFF;
+    box-shadow: 0 0.1em 0.3em rgba(0,0,0,0.3);
+    transition: all 300ms;
+    margin-top: -0.04em;
+}
+
+.switch input:checked + div {
+    transform: translate3d(100%, 0, 0);
+    background-color: #2196F3;
+}
+
+/* bg select buttons */
+
+#bg_select > button{
+    background-color: rgba(0, 0, 0, .5);
+    border: none;
+    width: calc(50% - 4px);
+    padding: 7px;
+    margin: 2px;
+}
+
+#bg_online_select {
+    float: right;
+}
 

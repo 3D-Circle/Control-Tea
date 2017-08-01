@@ -28,5 +28,6 @@ def get_weather():
     resp.headers['Access-Control-Allow-Origin'] = '*'
     return resp
 
+
 if __name__ == '__main__':
     app.run()

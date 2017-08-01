@@ -3,20 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>New Tab</title>
+    <!--  Style  -->
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <script src="libs/moment.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+    <!--  Scripts  -->
     <script src="libs/jquery-3.2.1.min.js"></script>
-    <script src="libs/skycons.js"></script>
+    <script src="libs/moment.min.js"></script>
+    <script src="libs/skycons.min.js"></script>
     <script src='script.js'></script>
 </head>
 <body>
-    <div id="title">
-        A sip of tea with Control-Tea.
-    </div>
-    <iframe src='https://lichess.org/training/frame?bg=dark&theme=brown' class='lichess-training-iframe'
-            allowtransparency='true' frameBorder='0' style='width: 224px; height: 264px;'
-            title='Lichess free online chess'></iframe>
     <div id="top_left" class="tile">
         <div id="date_time_wrapper">
             <div id="time"></div>
@@ -27,9 +23,45 @@
             <div id="current_temp"></div>
         </div>
     </div>
-    <div id="footer">
-        <div id="detail_weather"></div>
-        <div id="lol_status"></div>
+    <button id="sidebar_toggle">&lsaquo;</button>
+    <div id="sidebar">
+        <div id="widgets"></div>
+        
+        <div id="settings">
+            <div class="widget_title">Settings</div>
+            
+            <div class="settings_title">Widgets</div>
+            <div class="settings_row" id="lichess_setting">
+                Lichess daily puzzle
+               <div class="toggle_switch_wrapper">
+                   <label class="switch"><input type="checkbox" /><div></div></label>
+               </div>
+            </div>
+            <div class="settings_row" id="forecast_setting">
+                Weather forecast
+               <div class="toggle_switch_wrapper">
+                   <label class="switch"><input type="checkbox" /><div></div></label>
+               </div>
+            </div>
+            
+            <div class="settings_title">Weather</div>
+            <div class="settings_row" id="weather_imperial">
+                Use imperial units
+               <div class="toggle_switch_wrapper">
+                   <label class="switch"><input type="checkbox" /><div></div></label>
+               </div>
+            </div>
+            
+            <div class="settings_title">Background</div>
+            <div class="settings_row" id="bg_select">
+               <button id='bg_local_select'>Use background stored locally</button>
+               <button id='bg_online_select'>Use background stored online</button>
+            </div>
+            
+            <button id="apply_settings">Apply settings</button>
+            
+            <div class="spacer"></div>
+        </div>
     </div>
 </body>
 </html>

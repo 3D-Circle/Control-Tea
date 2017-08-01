@@ -1,22 +1,33 @@
 {
-  "manifest_version": 2,
+    "manifest_version": 2,
 
-  "name": "Control-Tea",
-  "description": "This extension offers a virtual sip of tea with Ctrl-T",
-  "version": "1.0",
+    "name": "Control-Tea",
+    "description": "This extension offers a virtual sip of tea with Ctrl-T",
+    "version": "1.0",
 
-  "browser_action": {
-    "default_icon": "icon.png",
-    "default_title": "Control-Tea"
-  },
-  "chrome_url_overrides" : {
-    "newtab": "new_tab.html"
-  },
-  "permissions": [
-    "activeTab",
-    "https://ajax.googleapis.com/",
-    "geolocation",
-    "storage"
-  ],
-  "key": "hmedchkliifjiglgflcdejlokhmjgbdi"
+    "browser_action": {
+        "default_icon": "imgs/icon.png",
+        "default_title": "Control-Tea"
+    },
+    "chrome_url_overrides" : {
+        "newtab": "new_tab.html"
+    },
+    "permissions": [
+        "activeTab",
+        "geolocation",
+        "storage"
+    ],
+    "commands": {
+        "toggle_sidebar": {
+            "suggested_key": {
+                "default": "Ctrl+B"
+            },
+            "description": "Toggle sidebar"
+        }
+    },
+    "key": "hmedchkliifjiglgflcdejlokhmjgbdi",
+    "background": {
+        "scripts": ["script.js"],
+        "persistent": true
+    }
 }
