@@ -3,6 +3,8 @@ Control over control-T!
 
 Chrome extension which replaces the new tab page with a clean & minimalistic, but also powerful and customisable dashboard.
 
+First released is planned to be out [soon™]()
+
 ## Projected features for first release
 
  - customizable background picture (local or online)
@@ -16,6 +18,7 @@ Chrome extension which replaces the new tab page with a clean & minimalistic, bu
  - widgets:
    - lichess daily puzzle
    - weather forcast
+ - customizable time display (with javascript)
    
 ## Planned widgets
 
